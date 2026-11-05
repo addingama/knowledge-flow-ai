@@ -1,17 +1,29 @@
-export default function HomePage() {
+import { BackendStatus } from "@/components/backend-status";
+import { getHealth } from "@/lib/api/health";
+
+export const dynamic = "force-dynamic";
+
+export default async function HomePage() {
+  const health = await getHealth().catch((error: unknown) => {
+    console.error("Failed to connect to Fastify API:", error);
+    return null;
+  });
+
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center gap-4 bg-slate-950 px-6 text-white">
-      <h1 className="text-4xl font-bold">
-        Fullstack Starter
-      </h1>
+    <main className="flex min-h-screen items-center justify-center bg-slate-950 px-6 text-white">
+      <div className="w-full max-w-xl space-y-8">
+        <div className="space-y-3 text-center">
+          <h1 className="text-4xl font-bold">
+            Knowledge Flow AI
+          </h1>
 
-      <p className="text-center text-slate-400">
-        Next.js + Fastify + TypeScript + pnpm
-      </p>
+          <p className="text-slate-400">
+            Next.js + Fastify + TypeScript + pnpm
+          </p>
+        </div>
 
-      <span className="rounded-full border border-emerald-500/30 bg-emerald-500/10 px-4 py-2 text-sm text-emerald-400">
-        Frontend is running
-      </span>
+        <BackendStatus health={health} />
+      </div>
     </main>
   );
 }
