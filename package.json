@@ -7,7 +7,10 @@
     "dev": "pnpm --parallel --filter './apps/*' dev",
     "build": "pnpm -r --sort build",
     "typecheck": "pnpm -r typecheck",
-    "lint": "pnpm -r lint"
+    "lint": "pnpm -r lint",
+    "test": "pnpm --filter @repo/shared build && pnpm -r --if-present test",
+    "test:coverage": "pnpm --filter @repo/shared build && pnpm --filter @repo/api test:coverage",
+    "check": "pnpm build && pnpm typecheck && pnpm lint && pnpm test"
   },
   "keywords": [],
   "author": "",
