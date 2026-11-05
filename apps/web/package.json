@@ -10,6 +10,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
+    "@repo/shared": "workspace:*",
     "next": "16.4.5",
     "react": "19.3.0",
     "react-dom": "19.3.0"

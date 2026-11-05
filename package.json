@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "pnpm --parallel --filter './apps/*' dev",
-    "build": "pnpm -r build",
+    "build": "pnpm -r --sort build",
     "typecheck": "pnpm -r typecheck",
     "lint": "pnpm -r lint"
   },
