@@ -4,6 +4,7 @@ import helmet from "@fastify/helmet";
 
 import { env } from "./config/env.js";
 import { healthRoutes } from "./routes/health.js";
+import { chatRoutes } from "./routes/chat.js";
 
 export function buildApp() {
   const app = Fastify({
@@ -19,6 +20,8 @@ export function buildApp() {
   });
 
   app.register(healthRoutes);
+
+  app.register(chatRoutes, {prefix: "/api"});
 
   return app;
 }

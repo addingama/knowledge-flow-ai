@@ -6,3 +6,8 @@ export type {
 export type {
   HealthResponse,
 } from "./types/health.js";
+
+export type {
+  ChatRequest,
+  ChatResponse,
+} from "./types/chat.js";

@@ -22,7 +22,8 @@
     "@fastify/helmet": "^13.2.0",
     "@repo/shared": "workspace:*",
     "dotenv": "^18.0.9",
-    "fastify": "^5.12.8"
+    "fastify": "^5.12.8",
+    "openai": "^7.51.0"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
