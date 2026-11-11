@@ -4,6 +4,8 @@ import { env } from "../config/env.js";
 
 export interface LlmProvider {
   generate(message: string): Promise<string>;
+
+  stream(message: string, signal?: AbortSignal): AsyncIterable<string>;
 }
 
 export class OpenAIProvider implements LlmProvider {
@@ -33,4 +35,31 @@ export class OpenAIProvider implements LlmProvider {
     }
     return text;
   }
+
+  async *stream(
+    message: string,
+    signal?: AbortSignal
+  ): AsyncIterable<string> {
+    const events = await this.client.responses.create({
+      model: env.OPENAI_MODEL,
+      instructions: "You are a helpful assistant. " + "Provide clear, accurate, and concise answers.",
+      input: message,
+      max_output_tokens: 500,
+      store: false,
+      stream: true,
+    },
+      { signal },
+    );
+
+    for await (const event of events) {
+      if (event.type === "response.output_text.delta") {
+        yield event.delta;
+      }
+
+      if (event.type === "response.failed") {
+        throw new Error("OpenAI response generation failed");
+      }
+    }
+  }
+
 }

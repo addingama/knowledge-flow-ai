@@ -5,6 +5,8 @@ import helmet from "@fastify/helmet";
 import { env } from "./config/env.js";
 import { healthRoutes } from "./routes/health.js";
 import { chatRoutes } from "./routes/chat.js";
+import { chatStreamRoutes } from "./routes/chat-stream.js";
+import { learningNoteRoutes } from "./routes/learning-notes.js";
 
 export function buildApp() {
   const app = Fastify({
@@ -22,6 +24,8 @@ export function buildApp() {
   app.register(healthRoutes);
 
   app.register(chatRoutes, {prefix: "/api"});
+  app.register(chatStreamRoutes, {prefix: "/api"});
+  app.register(learningNoteRoutes, {prefix: "/api"});
 
   return app;
 }

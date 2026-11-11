@@ -23,7 +23,8 @@
     "@repo/shared": "workspace:*",
     "dotenv": "^18.0.9",
     "fastify": "^5.12.8",
-    "openai": "^7.51.0"
+    "openai": "^7.51.0",
+    "zod": "^4.6.7"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",

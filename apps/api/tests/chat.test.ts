@@ -20,6 +20,9 @@ describe("POST /api/chat", () => {
     async generate() {
       return "A monorepo contains multiple projects.";
     },
+    async *stream() {
+      yield "A monorepo contains multiple projects.";
+    },
   };
 
   beforeEach(async () => {
@@ -85,6 +88,9 @@ describe("POST /api/chat", () => {
       prefix: "/api",
       llm: {
         async generate() {
+          throw new Error("Provider unavailable");
+        },
+        async *stream() {
           throw new Error("Provider unavailable");
         },
       },

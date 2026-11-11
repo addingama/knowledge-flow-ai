@@ -15,4 +15,8 @@ export class ChatService {
       }
     }
   }
+
+  stream(message: string, signal?: AbortSignal): AsyncIterable<string> {
+    return this.llmProvider.stream(message, signal);
+  }
 }
